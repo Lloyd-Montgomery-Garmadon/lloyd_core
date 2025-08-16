@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import logger from "./log";
+
 export class Env {
     // 保存所有环境变量键值对
     env: Record<string, any> = {};
@@ -18,8 +19,16 @@ export class Env {
      */
     constructor(envFilePath?: string) {
         if (envFilePath) {
-            const fullPath = path.resolve(envFilePath);
-            logger.debug(`[Env] 读取环境文件路径: ${fullPath}`);
+            let fullPath = envFilePath;
+
+            // 如果不是绝对路径，则基于调用者文件目录解析
+            if (!path.isAbsolute(envFilePath)) {
+                const callerDir = path.dirname((new Error().stack?.split('\n')[2] ?? '')
+                    .match(/\((.*):\d+:\d+\)/)?.[1] || process.cwd());
+                fullPath = path.resolve(callerDir, envFilePath);
+            }
+
+            console.log('最终路径:', fullPath);
             if (fs.existsSync(fullPath)) {
                 const fileContent = fs.readFileSync(fullPath, 'utf-8');
                 this.env = JSON.parse(fileContent);

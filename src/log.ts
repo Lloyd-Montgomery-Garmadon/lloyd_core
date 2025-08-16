@@ -20,7 +20,7 @@ interface LoggerOptions {
  * Logger 类，只支持彩色控制台输出，不写文件
  * 增加了写入锁，避免并发写日志导致的错误
  */
-export class Logger {
+export class Log {
     private readonly tag: string;
     private readonly level: LogLevel;
     private writeLock = Promise.resolve(); // 写入队列锁，保证顺序写入
@@ -139,6 +139,6 @@ export class Logger {
     }
 }
 
-const logger = new Logger({tag: 'core'});
+const logger = new Log({tag: 'core'});
 
 export default logger;
