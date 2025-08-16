@@ -1,0 +1,6 @@
+# Node.js
+node_modules/
+dist/
+
+# IDE 文件
+.idea/

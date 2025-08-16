@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",                 // 输出目录
+    "target": "ES2020",                 // 兼容性好
+    "module": "CommonJS",               // 核心库用 CommonJS，兼容大多数环境
+    "moduleResolution": "node",         // Node解析方式
+    "esModuleInterop": true,            // 支持 CommonJS 和 ES 模块混用
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "declaration": true,                // 生成类型声明文件
+    "declarationMap": true,             // 生成声明映射，方便调试
+    "sourceMap": true,                  // 生成源码映射，方便调试
+    "baseUrl": ".",                    // 基础路径
+    "paths": {
+      "@core/*": ["src/*"]              // 给 src 目录设置别名 @core/*
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
