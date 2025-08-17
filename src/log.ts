@@ -142,3 +142,4 @@ export class Log {
 const logger = new Log({tag: 'core'});
 
 export default logger;
+
